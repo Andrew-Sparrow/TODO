@@ -6,6 +6,9 @@
     <PHPCodeStyleSettings>
       <option name="FIELDS_DEFAULT_VISIBILITY" value="protected" />
     </PHPCodeStyleSettings>
+    <TypeScriptCodeStyleSettings version="0">
+      <option name="USE_EXPLICIT_JS_EXTENSION" value="TRUE" />
+    </TypeScriptCodeStyleSettings>
     <codeStyleSettings language="Blade">
       <indentOptions>
         <option name="INDENT_SIZE" value="2" />
