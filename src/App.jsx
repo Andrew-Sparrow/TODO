@@ -1,0 +1,33 @@
+import React from 'react';
+
+import './App.css';
+
+import {
+  Container,
+} from '@material-ui/core';
+import AddNewTaskContainer from './view/AddNewTaskContainer';
+
+import Header from './view/Header';
+
+function App() {
+  const containerStyle = {
+    backgroundColor: '#cfe8fc',
+    height: '100vh',
+    border: 'solid 1px black',
+    borderRadius: '5px',
+    padding: '50px',
+  };
+
+  return (
+    <Container
+      component="div"
+      maxWidth="sm"
+      style={containerStyle}
+    >
+      <Header />
+      <AddNewTaskContainer />
+    </Container>
+  );
+}
+
+export default App;
