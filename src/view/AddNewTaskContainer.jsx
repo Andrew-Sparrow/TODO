@@ -11,11 +11,17 @@ const style = {
   backgroundColor: '#ffffff',
 };
 
-const AddNewTaskContainer = () => (
-  <Box style={style}>
-    <AddNewTaskField />
-    <AddTaskButton />
-  </Box>
-);
+const AddNewTaskContainer = () => {
+  const onClick = () => {
+    console.log('click');
+  };
+
+  return (
+    <Box style={style}>
+      <AddNewTaskField />
+      <AddTaskButton onClick={onClick} />
+    </Box>
+  );
+};
 
 export default AddNewTaskContainer;

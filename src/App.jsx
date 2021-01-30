@@ -9,6 +9,7 @@ import {
 import AddNewTaskContainer from './view/AddNewTaskContainer';
 
 import Header from './view/Header';
+import Tasks from './view/Tasks';
 
 function App() {
   const containerStyle = {
@@ -28,6 +29,7 @@ function App() {
     >
       <Header />
       <AddNewTaskContainer />
+      <Tasks />
     </Container>
   );
 }

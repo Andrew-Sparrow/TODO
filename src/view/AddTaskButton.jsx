@@ -1,5 +1,6 @@
 import React from 'react';
 import Button from '@material-ui/core/Button';
+import PropTypes from 'prop-types';
 
 const style = {
   border: '2px solid #33cc33',
@@ -11,8 +12,16 @@ const style = {
   maxWidth: '380px',
 };
 
-const AddTaskButton = () => (
-  <Button style={style}>Add</Button>
+const AddTaskButton = ({ onClick }) => (
+  <Button style={style} onClick={onClick}>Add</Button>
 );
+
+AddTaskButton.propTypes = {
+  onClick: PropTypes.func,
+};
+
+AddTaskButton.defaultProps = {
+  onClick: null,
+};
 
 export default AddTaskButton;
