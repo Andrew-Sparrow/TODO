@@ -12,27 +12,25 @@ import Header from './view/Header';
 import Tasks from './view/Tasks';
 import NoTasks from './view/NoTasks';
 
-// const tasks = [
-//   {
-//     id: 1,
-//     text: 'Doctors Appointment',
-//     reminder: true,
-//   },
-//   {
-//     id: 2,
-//     text: 'Meeting at School',
-//     reminder: true,
-//   },
-//   {
-//     id: 3,
-//     text: 'Food Shopping',
-//     reminder: false,
-//   },
-// ];
+const tasks = [
+  {
+    id: 1,
+    text: 'Doctors Appointment',
+    completed: true,
+  },
+  {
+    id: 2,
+    text: 'Meeting at School',
+    completed: true,
+  },
+  {
+    id: 3,
+    text: 'Food Shopping',
+    completed: false,
+  },
+];
 
-const tasks = [];
-
-function App() {
+const App = () => {
   const [listTasks, setTasks] = useState(tasks);
 
   const containerStyle = {
@@ -48,6 +46,12 @@ function App() {
     setTasks(listTasks.filter((task) => id !== task.id));
   };
 
+  const toggleCompleted = (id) => {
+    setTasks(tasks.map((task) => (task.id === id
+      ? { ...task, completed: !task.completed }
+      : task)));
+  };
+
   return (
     <Container
       component="div"
@@ -56,9 +60,11 @@ function App() {
     >
       <Header />
       <AddNewTaskContainer />
-      {tasks.length > 0 ? <Tasks tasks={listTasks} onDelete={deleteTask} /> : <NoTasks />}
+      {tasks.length > 0
+        ? <Tasks tasks={listTasks} onDelete={deleteTask} onToggleCompleted={toggleCompleted} />
+        : <NoTasks />}
     </Container>
   );
-}
+};
 
 export default App;
