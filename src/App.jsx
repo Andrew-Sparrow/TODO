@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import './App.css';
 
@@ -11,7 +11,27 @@ import AddNewTaskContainer from './view/AddNewTaskContainer';
 import Header from './view/Header';
 import Tasks from './view/Tasks';
 
+const tasks = [
+  {
+    id: 1,
+    text: 'Doctors Appointment',
+    reminder: true,
+  },
+  {
+    id: 2,
+    text: 'Meeting at School',
+    reminder: true,
+  },
+  {
+    id: 3,
+    text: 'Food Shopping',
+    reminder: false,
+  },
+];
+
 function App() {
+  const [listTasks] = useState(tasks);
+
   const containerStyle = {
     backgroundColor: '#CDDFF1',
     height: '100vh',
@@ -29,7 +49,7 @@ function App() {
     >
       <Header />
       <AddNewTaskContainer />
-      <Tasks />
+      <Tasks tasks={listTasks} />
     </Container>
   );
 }

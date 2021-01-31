@@ -1,34 +1,21 @@
-import React, { useState } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 
 import List from '@material-ui/core/List';
 import Task from './Task';
 
-const tasks = [
-  {
-    id: 1,
-    text: 'Doctors Appointment',
-    reminder: true,
-  },
-  {
-    id: 2,
-    text: 'Meeting at School',
-    reminder: true,
-  },
-  {
-    id: 3,
-    text: 'Food Shopping',
-    reminder: false,
-  },
-];
+const Tasks = ({ tasks }) => (
+  <List component="ul" aria-label="list of tasks">
+    {tasks.map((task) => <Task key={task.id} text={task.text} />)}
+  </List>
+);
 
-const Tasks = () => {
-  const [listTasks] = useState(tasks);
+Tasks.propTypes = {
+  tasks: PropTypes.instanceOf(Array),
+};
 
-  return (
-    <List component="nav" aria-label="list of tasks">
-      {listTasks.map((task) => <Task task={task} />)}
-    </List>
-  );
+Tasks.defaultProps = {
+  tasks: [],
 };
 
 export default Tasks;
