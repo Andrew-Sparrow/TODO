@@ -10,24 +10,27 @@ import AddNewTaskContainer from './view/AddNewTaskContainer';
 
 import Header from './view/Header';
 import Tasks from './view/Tasks';
+import NoTasks from './view/NoTasks';
 
-const tasks = [
-  {
-    id: 1,
-    text: 'Doctors Appointment',
-    reminder: true,
-  },
-  {
-    id: 2,
-    text: 'Meeting at School',
-    reminder: true,
-  },
-  {
-    id: 3,
-    text: 'Food Shopping',
-    reminder: false,
-  },
-];
+// const tasks = [
+//   {
+//     id: 1,
+//     text: 'Doctors Appointment',
+//     reminder: true,
+//   },
+//   {
+//     id: 2,
+//     text: 'Meeting at School',
+//     reminder: true,
+//   },
+//   {
+//     id: 3,
+//     text: 'Food Shopping',
+//     reminder: false,
+//   },
+// ];
+
+const tasks = [];
 
 function App() {
   const [listTasks, setTasks] = useState(tasks);
@@ -53,7 +56,7 @@ function App() {
     >
       <Header />
       <AddNewTaskContainer />
-      <Tasks tasks={listTasks} onDelete={deleteTask} />
+      {tasks.length > 0 ? <Tasks tasks={listTasks} onDelete={deleteTask} /> : <NoTasks />}
     </Container>
   );
 }
