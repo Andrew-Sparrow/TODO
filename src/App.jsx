@@ -30,7 +30,7 @@ const tasks = [
 ];
 
 function App() {
-  const [listTasks] = useState(tasks);
+  const [listTasks, setTasks] = useState(tasks);
 
   const containerStyle = {
     backgroundColor: '#CDDFF1',
@@ -41,6 +41,10 @@ function App() {
     paddingBlockStart: '25px',
   };
 
+  const deleteTask = (id) => {
+    setTasks(listTasks.filter((task) => id !== task.id));
+  };
+
   return (
     <Container
       component="div"
@@ -49,7 +53,7 @@ function App() {
     >
       <Header />
       <AddNewTaskContainer />
-      <Tasks tasks={listTasks} />
+      <Tasks tasks={listTasks} onDelete={deleteTask} />
     </Container>
   );
 }
