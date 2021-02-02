@@ -2,19 +2,43 @@ import React from 'react';
 import Button from '@material-ui/core/Button';
 import PropTypes from 'prop-types';
 
-// const style = {
-//   border: '2px solid #33cc33',
-//   borderRadius: 3,
-//   color: '#33cc33',
-//   height: 48,
-//   padding: '26px 34px',
-//   boxShadow: '0 3px 5px 2px rgba(51, 204, 51, .2)',
-//   maxWidth: '380px',
-// };
+import { withStyles, makeStyles } from '@material-ui/core/styles';
+import { green } from '@material-ui/core/colors';
 
-const AddTaskButton = ({ onClick, disabled }) => (
-  <Button variant="outlined" onClick={onClick} color="primary" disabled={disabled}>Add</Button>
-);
+const ColorButton = withStyles(() => ({
+  root: {
+    color: green[500],
+    border: '2px solid',
+    borderColor: green[500],
+    backgroundColor: 'white',
+    padding: '13px 40px',
+    '&:hover': {
+      backgroundColor: '#ffffff',
+    },
+  },
+}))(Button);
+
+const useStyles = makeStyles((theme) => ({
+  margin: {
+    margin: theme.spacing(0),
+  },
+}));
+
+const AddTaskButton = ({ onClick, disabled }) => {
+  const classes = useStyles();
+
+  return (
+    <ColorButton
+      variant="outlined"
+      onClick={onClick}
+      className={classes.margin}
+      color="primary"
+      disabled={disabled}
+    >
+      Add
+    </ColorButton>
+  );
+};
 
 AddTaskButton.propTypes = {
   onClick: PropTypes.func,

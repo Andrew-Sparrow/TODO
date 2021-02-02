@@ -9,6 +9,7 @@ const AddNewTaskField = ({ value, onChange }) => (
     variant="outlined"
     aria-describedby="new task input field"
     size="medium"
+    autoFocus
     onChange={onChange}
     value={value}
     InputLabelProps={{
