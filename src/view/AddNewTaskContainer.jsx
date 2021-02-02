@@ -13,39 +13,66 @@ const style = {
   backgroundColor: '#ffffff',
 };
 
-export default class AddNewTaskContainer extends React.Component {
-  constructor(props) {
-    super(props);
-    this.props = props;
-    this.state = { value: '' };
+// export default class AddNewTaskContainer extends React.Component {
+//   constructor(props) {
+//     super(props);
+//     this.props = props;
+//     this.state = { value: '' };
+//
+//     this.handleChange = this.handleChange.bind(this);
+//     this.add = this.add.bind(this);
+//   }
+//
+//   handleChange(evt) {
+//     this.setState({ value: evt.target.value });
+//   }
+//
+//   add() {
+//     const { onButtonClick } = this.props;
+//     const { value } = this.state;
+//
+//     onButtonClick(value);
+//     this.setState({ value: '' });
+//   }
+//
+//   render() {
+//     const { value } = this.state;
+//
+//     return (
+//       <Box style={style}>
+//         <AddNewTaskField name="textField" value={value} onChange={this.handleChange} />
+//         <AddTaskButton disabled={!value} add={this.add} />
+//       </Box>
+//     );
+//   }
+// }
 
-    this.handleChange = this.handleChange.bind(this);
-    this.add = this.add.bind(this);
-  }
+const AddNewTaskContainer = (props) => {
+  const state = { value: '' };
 
-  handleChange(evt) {
-    this.setState({ value: evt.target.value });
-  }
+  const [newState, setState] = React.useState(state);
 
-  add() {
-    const { onButtonClick } = this.props;
-    const { value } = this.state;
+  const handleChange = (evt) => {
+    setState({ value: evt.target.value });
+  };
+
+  const add = () => {
+    const { onButtonClick } = props;
+    const { value } = newState;
 
     onButtonClick(value);
-    this.setState({ value: '' });
-  }
+    setState({ value: '' });
+  };
 
-  render() {
-    const { value } = this.state;
+  const { value } = newState;
 
-    return (
-      <Box style={style}>
-        <AddNewTaskField name="textField" value={value} onChange={this.handleChange} />
-        <AddTaskButton disabled={!value} add={this.add} />
-      </Box>
-    );
-  }
-}
+  return (
+    <Box style={style}>
+      <AddNewTaskField name="textField" value={value} onChange={handleChange} />
+      <AddTaskButton disabled={!value} add={add} />
+    </Box>
+  );
+};
 
 AddNewTaskContainer.propTypes = {
   onButtonClick: PropTypes.func,
@@ -54,3 +81,5 @@ AddNewTaskContainer.propTypes = {
 AddNewTaskContainer.defaultProps = {
   onButtonClick: null,
 };
+
+export default AddNewTaskContainer;
