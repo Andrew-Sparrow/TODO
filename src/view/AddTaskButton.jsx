@@ -24,13 +24,14 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const AddTaskButton = ({ onClick, disabled }) => {
+const AddTaskButton = ({ onSubmit, disabled }) => {
   const classes = useStyles();
 
   return (
     <ColorButton
+      type="submit"
       variant="outlined"
-      onClick={onClick}
+      onClick={onSubmit}
       className={classes.margin}
       color="primary"
       disabled={disabled}
@@ -41,12 +42,12 @@ const AddTaskButton = ({ onClick, disabled }) => {
 };
 
 AddTaskButton.propTypes = {
-  onClick: PropTypes.func,
+  onSubmit: PropTypes.func,
   disabled: PropTypes.bool,
 };
 
 AddTaskButton.defaultProps = {
-  onClick: null,
+  onSubmit: null,
   disabled: null,
 };
 

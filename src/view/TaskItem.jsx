@@ -42,10 +42,10 @@ const TaskItem = ({
 };
 
 TaskItem.propTypes = {
+  id: PropTypes.string,
   text: PropTypes.string,
   onDelete: PropTypes.func,
   onToggleCompleted: PropTypes.func,
-  id: PropTypes.number,
   completed: PropTypes.bool,
 };
 

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import nanoid from 'nanoid';
 
 import './App.css';
 
@@ -14,17 +15,17 @@ import NoTasks from './view/NoTasks';
 
 const tasks = [
   {
-    id: 1,
+    id: '1',
     text: 'Doctors Appointment',
     completed: true,
   },
   {
-    id: 2,
+    id: '2',
     text: 'Meeting at School',
     completed: true,
   },
   {
-    id: 3,
+    id: '3',
     text: 'Food Shopping',
     completed: false,
   },
@@ -40,6 +41,13 @@ const App = () => {
     borderRadius: '5px',
     padding: '50px',
     paddingBlockStart: '25px',
+  };
+
+  const addTask = (task) => {
+    const id = `id-${nanoid(7)}`;
+
+    const newTask = { id, ...task };
+    setTasks([...listTasks, newTask]);
   };
 
   const deleteTask = (id) => {
@@ -59,7 +67,7 @@ const App = () => {
       style={containerStyle}
     >
       <Header />
-      <AddNewTaskContainer />
+      <AddNewTaskContainer onAdd={addTask} />
       {tasks.length > 0
         ? <Tasks tasks={listTasks} onDelete={deleteTask} onToggleCompleted={toggleCompleted} />
         : <NoTasks />}

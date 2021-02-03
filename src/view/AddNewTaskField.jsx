@@ -5,9 +5,10 @@ import PropTypes from 'prop-types';
 const AddNewTaskField = ({ value, onChange }) => (
   <TextField
     label="Task"
+    type="text"
     id="outlined"
     variant="outlined"
-    aria-describedby="new task input field"
+    aria-label="new task input field"
     size="medium"
     autoFocus
     onChange={onChange}

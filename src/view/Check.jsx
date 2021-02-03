@@ -26,7 +26,7 @@ const Check = ({ id, completed, onToggleCompleted }) => {
 };
 
 Check.propTypes = {
-  id: PropTypes.number,
+  id: PropTypes.string,
   completed: PropTypes.bool,
   onToggleCompleted: PropTypes.func,
 };
