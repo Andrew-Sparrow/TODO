@@ -1,19 +1,19 @@
 {
-  "posts": [
+  "tasks": [
     {
-      "id": 1,
-      "title": "json-server",
-      "author": "typicode"
-    }
-  ],
-  "comments": [
+      "id": "1",
+      "text": "Doctors Appointment",
+      "isCompleted": true
+    },
     {
-      "id": 1,
-      "body": "some comment",
-      "postId": 1
+      "id": "2",
+      "text": "Meeting at School",
+      "isCompleted": true
+    },
+    {
+      "id": "3",
+      "text": "Food Shopping",
+      "isCompleted": false
     }
-  ],
-  "profile": {
-    "name": "typicode"
-  }
+  ]
 }

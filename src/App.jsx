@@ -13,23 +13,7 @@ import Header from './view/Header';
 import Tasks from './view/Tasks';
 import NoTasks from './view/NoTasks';
 
-const originTasks = [
-  {
-    id: '1',
-    text: 'Doctors Appointment',
-    isCompleted: true,
-  },
-  {
-    id: '2',
-    text: 'Meeting at School',
-    isCompleted: true,
-  },
-  {
-    id: '3',
-    text: 'Food Shopping',
-    isCompleted: false,
-  },
-];
+const originTasks = [];
 
 const App = () => {
   const [listTasks, setTasks] = useState(originTasks);
