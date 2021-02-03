@@ -7,7 +7,7 @@ import CloseIcon from '@material-ui/icons/Close';
 import Check from './Check';
 
 const TaskItem = ({
-  id, text, onDelete, completed, onToggleCompleted,
+  id, text, onDelete, isCompleted, onToggleCompleted,
 }) => {
   const containerStyle = {
     display: 'flex',
@@ -26,7 +26,7 @@ const TaskItem = ({
   return (
     <ListItem component="li" style={containerStyle}>
       <Box style={boxStyle}>
-        <Check id={id} completed={completed} onToggleCompleted={onToggleCompleted} />
+        <Check id={id} completed={isCompleted} onToggleCompleted={onToggleCompleted} />
         <Box style={taskTextStyle}>{text}</Box>
       </Box>
       <Button onClick={() => onDelete(id)}>
@@ -46,7 +46,7 @@ TaskItem.propTypes = {
   text: PropTypes.string,
   onDelete: PropTypes.func,
   onToggleCompleted: PropTypes.func,
-  completed: PropTypes.bool,
+  isCompleted: PropTypes.bool,
 };
 
 TaskItem.defaultProps = {
@@ -54,7 +54,7 @@ TaskItem.defaultProps = {
   text: null,
   onDelete: null,
   onToggleCompleted: null,
-  completed: false,
+  isCompleted: false,
 };
 
 export default TaskItem;

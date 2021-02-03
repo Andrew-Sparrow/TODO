@@ -17,17 +17,17 @@ const originTasks = [
   {
     id: '1',
     text: 'Doctors Appointment',
-    completed: true,
+    isCompleted: true,
   },
   {
     id: '2',
     text: 'Meeting at School',
-    completed: true,
+    isCompleted: true,
   },
   {
     id: '3',
     text: 'Food Shopping',
-    completed: false,
+    isCompleted: false,
   },
 ];
 
@@ -45,9 +45,9 @@ const App = () => {
 
   const addTask = (task) => {
     const id = `id-${nanoid(7)}`;
-    const completed = false;
+    const isCompleted = false;
 
-    const newTask = { id, completed, ...task };
+    const newTask = { id, isCompleted, ...task };
 
     setTasks([...listTasks, newTask]);
   };
@@ -58,7 +58,7 @@ const App = () => {
 
   const toggleCompleted = (id) => {
     setTasks(listTasks.map((task) => (task.id === id
-      ? { ...task, completed: !task.completed }
+      ? { ...task, isCompleted: !task.completed }
       : task)));
   };
 
