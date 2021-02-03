@@ -45,8 +45,10 @@ const App = () => {
 
   const addTask = (task) => {
     const id = `id-${nanoid(7)}`;
+    const completed = false;
 
-    const newTask = { id, ...task };
+    const newTask = { id, completed, ...task };
+
     setTasks([...listTasks, newTask]);
   };
 
@@ -55,7 +57,7 @@ const App = () => {
   };
 
   const toggleCompleted = (id) => {
-    setTasks(tasks.map((task) => (task.id === id
+    setTasks(listTasks.map((task) => (task.id === id
       ? { ...task, completed: !task.completed }
       : task)));
   };
