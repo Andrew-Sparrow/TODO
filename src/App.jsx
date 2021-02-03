@@ -13,7 +13,7 @@ import Header from './view/Header';
 import Tasks from './view/Tasks';
 import NoTasks from './view/NoTasks';
 
-const tasks = [
+const originTasks = [
   {
     id: '1',
     text: 'Doctors Appointment',
@@ -32,7 +32,7 @@ const tasks = [
 ];
 
 const App = () => {
-  const [listTasks, setTasks] = useState(tasks);
+  const [listTasks, setTasks] = useState(originTasks);
 
   const containerStyle = {
     backgroundColor: '#CDDFF1',
@@ -70,7 +70,7 @@ const App = () => {
     >
       <Header />
       <AddNewTaskContainer onAdd={addTask} />
-      {tasks.length > 0
+      {originTasks.length > 0
         ? <Tasks tasks={listTasks} onDelete={deleteTask} onToggleCompleted={toggleCompleted} />
         : <NoTasks />}
     </Container>
