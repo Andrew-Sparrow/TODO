@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import nanoid from 'nanoid';
 
 import './App.css';
@@ -13,10 +13,8 @@ import Header from './view/Header';
 import Tasks from './view/Tasks';
 import NoTasks from './view/NoTasks';
 
-const originTasks = [];
-
 const App = () => {
-  const [listTasks, setTasks] = useState(originTasks);
+  const [tasks, setTasks] = useState([]);
 
   const containerStyle = {
     backgroundColor: '#CDDFF1',
@@ -27,21 +25,37 @@ const App = () => {
     paddingBlockStart: '25px',
   };
 
+  const fetchTasks = async () => {
+    const response = await fetch('http://localhost:5000/tasks');
+    const data = await response.json();
+
+    return data;
+  };
+
+  useEffect(() => {
+    const getTasks = async () => {
+      const tasksFromServer = await fetchTasks();
+      setTasks(tasksFromServer);
+    };
+
+    getTasks();
+  }, []);
+
   const addTask = (task) => {
     const id = `id-${nanoid(7)}`;
     const isCompleted = false;
 
     const newTask = { id, isCompleted, ...task };
 
-    setTasks([...listTasks, newTask]);
+    setTasks([...tasks, newTask]);
   };
 
   const deleteTask = (id) => {
-    setTasks(listTasks.filter((task) => id !== task.id));
+    setTasks(tasks.filter((task) => id !== task.id));
   };
 
   const toggleCompleted = (id) => {
-    setTasks(listTasks.map((task) => (task.id === id
+    setTasks(tasks.map((task) => (task.id === id
       ? { ...task, isCompleted: !task.completed }
       : task)));
   };
@@ -54,8 +68,8 @@ const App = () => {
     >
       <Header />
       <AddNewTaskContainer onAdd={addTask} />
-      {originTasks.length > 0
-        ? <Tasks tasks={listTasks} onDelete={deleteTask} onToggleCompleted={toggleCompleted} />
+      {tasks.length > 0
+        ? <Tasks tasks={tasks} onDelete={deleteTask} onToggleCompleted={toggleCompleted} />
         : <NoTasks />}
     </Container>
   );
