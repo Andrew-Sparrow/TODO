@@ -27,9 +27,16 @@ const App = () => {
 
   const fetchTasks = async () => {
     const response = await fetch('http://localhost:5000/tasks');
-    const data = await response.json();
+    const tasksFromServer = await response.json();
 
-    return data;
+    return tasksFromServer;
+  };
+
+  const fetchTask = async (id) => {
+    const response = await fetch(`http://localhost:5000/tasks/${id}`);
+    const task = await response.json();
+
+    return task;
   };
 
   useEffect(() => {
@@ -56,13 +63,9 @@ const App = () => {
     const taskFromServer = await response.json();
 
     setTasks([...tasks, taskFromServer]);
-
-    // const id = `id-${nanoid(7)}`;
-    //
   };
 
   const deleteTask = async (id) => {
-    console.log(typeof id);
     await fetch(`http://localhost:5000/tasks/${id}`, {
       method: 'DELETE',
     });
@@ -70,10 +73,25 @@ const App = () => {
     setTasks(tasks.filter((task) => id !== task.id));
   };
 
-  const toggleCompleted = (id) => {
-    setTasks(tasks.map((task) => (task.id === id
-      ? { ...task, isCompleted: !task.completed }
-      : task)));
+  const toggleCompleted = async (id) => {
+    const taskToToggle = await fetchTask(id);
+    const updatedTask = { ...taskToToggle, isCompleted: !taskToToggle.isCompleted };
+
+    const response = await fetch(`http://localhost:5000/tasks/${id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-type': 'application/json',
+      },
+      body: JSON.stringify(updatedTask),
+    });
+
+    const taskFromServer = await response.json();
+
+    setTasks(tasks.map(
+      (task) => (task.id === id
+        ? { ...task, isCompleted: taskFromServer.completed }
+        : task),
+    ));
   };
 
   return (

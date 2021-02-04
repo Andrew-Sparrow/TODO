@@ -27,13 +27,13 @@ const Check = ({ id, completed, onToggleCompleted }) => {
 
 Check.propTypes = {
   id: PropTypes.string,
-  isCompleted: PropTypes.bool,
+  completed: PropTypes.bool,
   onToggleCompleted: PropTypes.func,
 };
 
 Check.defaultProps = {
   id: null,
-  isCompleted: false,
+  completed: false,
   onToggleCompleted: null,
 };
 

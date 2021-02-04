@@ -13,7 +13,7 @@ const Tasks = ({ tasks, onDelete, onToggleCompleted }) => (
         onDelete={onDelete}
         onToggleCompleted={onToggleCompleted}
         text={task.text}
-        completed={task.completed}
+        isCompleted={task.isCompleted}
       />
     ))}
   </List>
