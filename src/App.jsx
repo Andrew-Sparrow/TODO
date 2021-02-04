@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-// import nanoid from 'nanoid';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 import './App.css';
 
@@ -12,6 +12,8 @@ import AddNewTaskContainer from './view/AddNewTaskContainer';
 import Header from './view/Header';
 import Tasks from './view/Tasks';
 import NoTasks from './view/NoTasks';
+import Footer from './view/Footer';
+import About from './view/About';
 
 const App = () => {
   const [tasks, setTasks] = useState([]);
@@ -95,17 +97,29 @@ const App = () => {
   };
 
   return (
-    <Container
-      component="div"
-      maxWidth="sm"
-      style={containerStyle}
-    >
-      <Header />
-      <AddNewTaskContainer onAdd={addTask} />
-      {tasks.length > 0
-        ? <Tasks tasks={tasks} onDelete={deleteTask} onToggleCompleted={toggleCompleted} />
-        : <NoTasks />}
-    </Container>
+    <Router>
+      <Container
+        component="div"
+        maxWidth="sm"
+        style={containerStyle}
+      >
+        <Header />
+        <Route
+          path="/"
+          exact
+          render={() => (
+            <>
+              <AddNewTaskContainer onAdd={addTask} />
+              {tasks.length > 0
+                ? <Tasks tasks={tasks} onDelete={deleteTask} onToggleCompleted={toggleCompleted} />
+                : <NoTasks />}
+            </>
+          )}
+        />
+        <Route path="/about" component={About} />
+        <Footer />
+      </Container>
+    </Router>
   );
 };
 
