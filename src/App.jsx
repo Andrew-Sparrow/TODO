@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import nanoid from 'nanoid';
+// import nanoid from 'nanoid';
 
 import './App.css';
 
@@ -41,16 +41,32 @@ const App = () => {
     getTasks();
   }, []);
 
-  const addTask = (task) => {
-    const id = `id-${nanoid(7)}`;
+  const addTask = async (task) => {
     const isCompleted = false;
+    const newTask = { isCompleted, ...task };
 
-    const newTask = { id, isCompleted, ...task };
+    const response = await fetch('http://localhost:5000/tasks', {
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/json',
+      },
+      body: JSON.stringify(newTask),
+    });
 
-    setTasks([...tasks, newTask]);
+    const taskFromServer = await response.json();
+
+    setTasks([...tasks, taskFromServer]);
+
+    // const id = `id-${nanoid(7)}`;
+    //
   };
 
-  const deleteTask = (id) => {
+  const deleteTask = async (id) => {
+    console.log(typeof id);
+    await fetch(`http://localhost:5000/tasks/${id}`, {
+      method: 'DELETE',
+    });
+
     setTasks(tasks.filter((task) => id !== task.id));
   };
 
