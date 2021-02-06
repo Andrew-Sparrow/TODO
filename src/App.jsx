@@ -75,9 +75,9 @@ const App = () => {
     setTasks(tasks.filter((task) => id !== task.id));
   };
 
-  const toggleCompleted = async (id) => {
+  const toggleCompleted = async (id, isChecked) => {
     const taskToToggle = await fetchTask(id);
-    const updatedTask = { ...taskToToggle, isCompleted: !taskToToggle.isCompleted };
+    const updatedTask = { ...taskToToggle, isCompleted: isChecked };
 
     const response = await fetch(`http://localhost:5000/tasks/${id}`, {
       method: 'PUT',
@@ -91,7 +91,7 @@ const App = () => {
 
     setTasks(tasks.map(
       (task) => (task.id === id
-        ? { ...task, isCompleted: taskFromServer.completed }
+        ? { ...task, isCompleted: taskFromServer.isCompleted }
         : task),
     ));
   };

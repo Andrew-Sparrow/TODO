@@ -19,15 +19,11 @@ const TaskItem = ({
     display: 'flex',
   };
 
-  const taskTextStyle = {
-    padding: '18px 35px',
-  };
-
   return (
     <ListItem component="li" style={containerStyle}>
       <Box style={boxStyle}>
         <Check id={id} completed={isCompleted} onToggleCompleted={onToggleCompleted} />
-        <Box style={taskTextStyle}>{text}</Box>
+        <Box style={{ padding: '18px 35px', textDecoration: isCompleted && 'line-through' }}>{text}</Box>
       </Box>
       <Button onClick={() => onDelete(id)}>
         <CloseIcon

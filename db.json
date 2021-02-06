@@ -3,16 +3,16 @@
     {
       "id": "1",
       "text": "Doctors Appointment",
-      "isCompleted": true
+      "isCompleted": false
     },
     {
       "isCompleted": false,
-      "text": "q",
+      "text": "Meeting at School",
       "id": "xU5UOHz"
     },
     {
       "isCompleted": false,
-      "text": "ddddddd",
+      "text": "Watch Movie",
       "id": "gUTYfKB"
     }
   ]

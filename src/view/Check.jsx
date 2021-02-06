@@ -3,10 +3,8 @@ import Checkbox from '@material-ui/core/Checkbox';
 import PropTypes from 'prop-types';
 
 const Check = ({ id, completed, onToggleCompleted }) => {
-  const [checked, setChecked] = React.useState(completed);
-
-  const handleChange = (event) => {
-    setChecked(event.target.checked);
+  const handleChange = (evt) => {
+    onToggleCompleted(id, evt.target.checked);
   };
 
   const style = {
@@ -16,11 +14,10 @@ const Check = ({ id, completed, onToggleCompleted }) => {
 
   return (
     <Checkbox
-      checked={checked}
+      checked={completed}
       onChange={handleChange}
       inputProps={{ 'aria-label': 'checkbox' }}
       style={style}
-      onClick={() => onToggleCompleted(id)}
     />
   );
 };
