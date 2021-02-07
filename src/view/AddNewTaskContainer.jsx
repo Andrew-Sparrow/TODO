@@ -67,7 +67,7 @@ const AddNewTaskContainer = (props) => {
     <form>
       <Box style={style}>
         <AddNewTaskField
-          type="submit"
+          type="text"
           name="textField"
           value={text}
           onChange={handleChange}

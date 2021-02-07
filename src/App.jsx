@@ -96,6 +96,27 @@ const App = () => {
     ));
   };
 
+  const editTaskText = async (id, taskText) => {
+    const taskToToggle = await fetchTask(id);
+    const updatedTask = { ...taskToToggle, text: taskText };
+
+    const response = await fetch(`http://localhost:5000/tasks/${id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-type': 'application/json',
+      },
+      body: JSON.stringify(updatedTask),
+    });
+
+    const taskFromServer = await response.json();
+
+    setTasks(tasks.map(
+      (task) => (task.id === id
+        ? { ...task, text: taskFromServer.text }
+        : task),
+    ));
+  };
+
   return (
     <Router>
       <Container
@@ -111,7 +132,14 @@ const App = () => {
             <>
               <AddNewTaskContainer onAdd={addTask} />
               {tasks.length > 0
-                ? <Tasks tasks={tasks} onDelete={deleteTask} onToggleCompleted={toggleCompleted} />
+                ? (
+                  <Tasks
+                    tasks={tasks}
+                    onDelete={deleteTask}
+                    onToggleCompleted={toggleCompleted}
+                    editTaskText={editTaskText}
+                  />
+                )
                 : <NoTasks />}
             </>
           )}

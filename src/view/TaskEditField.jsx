@@ -2,9 +2,8 @@ import React from 'react';
 import TextField from '@material-ui/core/TextField';
 import PropTypes from 'prop-types';
 
-const AddNewTaskField = ({ value, onChange }) => (
+const TaskEditField = ({ value, onChange }) => (
   <TextField
-    label="Task"
     type="text"
     id="outlined"
     variant="outlined"
@@ -13,20 +12,17 @@ const AddNewTaskField = ({ value, onChange }) => (
     autoFocus
     onChange={onChange}
     value={value}
-    InputLabelProps={{
-      shrink: true,
-    }}
   />
 );
 
-AddNewTaskField.propTypes = {
+TaskEditField.propTypes = {
   onChange: PropTypes.func,
   value: PropTypes.string,
 };
 
-AddNewTaskField.defaultProps = {
+TaskEditField.defaultProps = {
   onChange: null,
   value: '',
 };
 
-export default AddNewTaskField;
+export default TaskEditField;
