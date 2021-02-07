@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import TaskEditField from './TaskEditField';
 
@@ -16,6 +16,20 @@ const TaskEditForm = ({
     editTaskText(id, newText);
     cancelEditState(evt);
   };
+
+  const escFunction = useCallback((evt) => {
+    if (evt.keyCode === 27) {
+      cancelEditState(evt);
+    }
+  }, [cancelEditState]);
+
+  useEffect(() => {
+    document.addEventListener('keydown', escFunction, false);
+
+    return () => {
+      document.removeEventListener('keydown', escFunction, false);
+    };
+  }, [escFunction]);
 
   const editItem = (
     <form onSubmit={onSubmit}>
