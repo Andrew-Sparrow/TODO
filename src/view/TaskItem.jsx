@@ -46,7 +46,7 @@ const TaskItem = ({
               cancelEditState={cancelEditState}
             />
           )
-          : <Box style={{ padding: '18px 35px', textDecoration: isCompleted && 'line-through' }}>{text}</Box> }
+          : <Box style={{ padding: '20px 35px', textDecoration: isCompleted && 'line-through' }}>{text}</Box> }
       </Box>
       <Button onClick={() => onDelete(id)}>
         <CloseIcon

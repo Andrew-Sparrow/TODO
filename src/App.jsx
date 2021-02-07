@@ -20,7 +20,6 @@ const App = () => {
 
   const containerStyle = {
     backgroundColor: '#CDDFF1',
-    height: '100vh',
     border: 'solid 1px black',
     borderRadius: '5px',
     padding: '50px',
