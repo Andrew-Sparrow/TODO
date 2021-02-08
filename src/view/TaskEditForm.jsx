@@ -13,8 +13,12 @@ const TaskEditForm = ({
 
   const onSubmit = (evt) => {
     evt.preventDefault();
-    editTaskText(id, newText);
-    cancelEditState(evt);
+    if (newText) {
+      editTaskText(id, newText);
+      cancelEditState(evt);
+    } else {
+      console.log('error');
+    }
   };
 
   const escFunction = useCallback((evt) => {

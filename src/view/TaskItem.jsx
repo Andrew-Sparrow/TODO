@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+
 import ListItem from '@material-ui/core/ListItem';
 import PropTypes from 'prop-types';
 import Box from '@material-ui/core/Box';
@@ -16,6 +17,7 @@ const TaskItem = ({
     display: 'flex',
     justifyContent: 'space-between',
     padding: '20px 0',
+    paddingTop: '20px',
   };
 
   const boxStyle = {
@@ -33,9 +35,13 @@ const TaskItem = ({
   };
 
   return (
-    <ListItem component="li" style={containerStyle} onClick={onEditTask} onBlur={cancelEditState}>
+    <ListItem component="li" style={containerStyle} onBlur={cancelEditState}>
       <Box style={boxStyle}>
-        <Check id={id} completed={isCompleted} onToggleCompleted={onToggleCompleted} />
+        <Check
+          id={id}
+          completed={isCompleted}
+          onToggleCompleted={onToggleCompleted}
+        />
         {stateEdit.isEdit
           ? (
             <TaskEditForm
@@ -46,7 +52,14 @@ const TaskItem = ({
               cancelEditState={cancelEditState}
             />
           )
-          : <Box style={{ padding: '20px 35px', textDecoration: isCompleted && 'line-through' }}>{text}</Box> }
+          : (
+            <Box
+              onClick={onEditTask}
+              style={{ padding: '20px 35px', textDecoration: isCompleted && 'line-through' }}
+            >
+              {text}
+            </Box>
+          )}
       </Box>
       <Button onClick={() => onDelete(id)}>
         <CloseIcon

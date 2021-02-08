@@ -6,6 +6,7 @@ const AddNewTaskField = ({ value, onChange }) => (
   <TextField
     label="Task"
     type="text"
+    placeholder="Add New Task"
     id="outlined"
     variant="outlined"
     aria-label="new task input field"
