@@ -11,13 +11,13 @@ const TaskEditForm = ({
     setText(evt.target.value);
   };
 
+  // let taskEditError = false;
+
   const onSubmit = (evt) => {
     evt.preventDefault();
     if (newText) {
       editTaskText(id, newText);
       cancelEditState(evt);
-    } else {
-      console.log('error');
     }
   };
 
@@ -42,6 +42,8 @@ const TaskEditForm = ({
         value={newText}
         onChange={handleChange}
         name="task"
+        // cancelEditState={cancelEditState}
+        // taskEditError={taskEditError}
       >
         {newText}
       </TaskEditField>

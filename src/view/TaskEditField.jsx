@@ -7,14 +7,20 @@ import PropTypes from 'prop-types';
 const useStyles = makeStyles({
   root: {
     borderRadius: 3,
-    color: 'red',
     marginBottom: '-10px',
-    marginLeft: '20px',
+    marginLeft: '15px',
     marginTop: '10px',
+    backgroundColor: '#ffffff',
+    width: '300px',
+    paddingLeft: '20px',
+    paddingRight: '20px',
+    paddingTop: '10px',
   },
 });
 
-const TaskEditField = ({ value, onChange, taskEditError }) => {
+// const TaskEditField = ({ value, onChange }) => {
+const TaskEditField = ({ value, onChange, cancelEditState }) => {
+// const TaskEditField = ({ value, onChange, taskEditError }) => {
   const classes = useStyles();
 
   return (
@@ -22,30 +28,29 @@ const TaskEditField = ({ value, onChange, taskEditError }) => {
       classes={{
         root: classes.root,
       }}
-      type="text"
-      id="outlined"
-      variant="outlined"
-      aria-label="new task input field"
+      aria-describedby="new task input field"
       size="small"
-      autoFocus
       onChange={onChange}
       value={value}
-      error={!!taskEditError}
-      helperText="Incorrect entry"
+      onBlur={cancelEditState}
+      // error={taskEditError}
+      // helperText="Text Field Should Not Be Empty"
     />
   );
 };
 
 TaskEditField.propTypes = {
   onChange: PropTypes.func,
+  cancelEditState: PropTypes.func,
   value: PropTypes.string,
-  taskEditError: PropTypes.string,
+  // taskEditError: PropTypes.bool,
 };
 
 TaskEditField.defaultProps = {
   onChange: null,
+  cancelEditState: null,
   value: '',
-  taskEditError: null,
+  // taskEditError: null,
 };
 
 export default TaskEditField;

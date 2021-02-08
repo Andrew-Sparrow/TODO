@@ -35,7 +35,10 @@ const TaskItem = ({
   };
 
   return (
-    <ListItem component="li" style={containerStyle} onBlur={cancelEditState}>
+    <ListItem
+      component="li"
+      style={containerStyle}
+    >
       <Box style={boxStyle}>
         <Check
           id={id}

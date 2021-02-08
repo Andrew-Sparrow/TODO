@@ -63,6 +63,10 @@ const AddNewTaskContainer = (props) => {
     setText('');
   };
 
+  const cancelAddNewTaskChanges = () => {
+    setText('');
+  };
+
   return (
     <form>
       <Box style={style}>
@@ -71,6 +75,7 @@ const AddNewTaskContainer = (props) => {
           name="textField"
           value={text}
           onChange={handleChange}
+          cancelAddNewTaskChanges={cancelAddNewTaskChanges}
         />
         <AddTaskButton disabled={!text} onSubmit={onSubmit} />
       </Box>
