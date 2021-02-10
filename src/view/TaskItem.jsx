@@ -39,6 +39,7 @@ const TaskItem = ({
       component="li"
       style={containerStyle}
       onBlur={cancelEditState}
+      onClick={onEditTask}
     >
       <Box style={boxStyle}>
         <Check
@@ -58,7 +59,6 @@ const TaskItem = ({
           )
           : (
             <Box
-              onClick={onEditTask}
               style={{ padding: '20px 35px', textDecoration: isCompleted && 'line-through' }}
             >
               {text}
