@@ -1,5 +1,6 @@
 <component name="ProjectCodeStyleConfiguration">
   <code_scheme name="Project" version="173">
+    <option name="LINE_SEPARATOR" value="&#10;" />
     <HTMLCodeStyleSettings>
       <option name="HTML_ENFORCE_QUOTES" value="true" />
     </HTMLCodeStyleSettings>
@@ -9,6 +10,9 @@
     <TypeScriptCodeStyleSettings version="0">
       <option name="USE_EXPLICIT_JS_EXTENSION" value="TRUE" />
     </TypeScriptCodeStyleSettings>
+    <editorconfig>
+      <option name="ENABLED" value="false" />
+    </editorconfig>
     <codeStyleSettings language="Blade">
       <indentOptions>
         <option name="INDENT_SIZE" value="2" />

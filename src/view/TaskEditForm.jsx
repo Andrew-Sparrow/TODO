@@ -1,5 +1,4 @@
-import React from 'react';
-// import React, { useEffect, useCallback } from 'react';
+import React, { useEffect, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import TaskEditField from './TaskEditField';
 
@@ -22,31 +21,31 @@ const TaskEditForm = ({
     }
   };
 
-  // const escFunction = useCallback((evt) => {
-  //   if (evt.keyCode === 27) {
-  //     cancelEditState(evt);
-  //   }
-  // }, [cancelEditState]);
-  //
-  // useEffect(() => {
-  //   document.addEventListener('keydown', escFunction, false);
-  //
-  //   return () => {
-  //     document.removeEventListener('keydown', escFunction, false);
-  //   };
-  // }, [escFunction]);
+  const escFunction = useCallback((evt) => {
+    if (evt.keyCode === 27) {
+      cancelEditState(evt);
+    }
+  }, [cancelEditState]);
+
+  useEffect(() => {
+    document.addEventListener('keydown', escFunction, false);
+
+    return () => {
+      document.removeEventListener('keydown', escFunction, false);
+    };
+  }, [escFunction]);
 
   const editItem = (
     <form
       onSubmit={onSubmit}
-      // onBlur={cancelEditState}
+      onBlur={cancelEditState}
     >
       <TaskEditField
         style={{ padding: '18px 35px', textDecoration: isCompleted && 'line-through' }}
         value={newText}
         onChange={handleChange}
         name="task"
-        // cancelEditState={cancelEditState}
+        cancelEditState={cancelEditState}
         // taskEditError={taskEditError}
       >
         {newText}
@@ -63,7 +62,6 @@ TaskEditForm.propTypes = {
   onDelete: PropTypes.func,
   onToggleCompleted: PropTypes.func,
   cancelEditState: PropTypes.func,
-  cancelEditStateBlur: PropTypes.func,
   isCompleted: PropTypes.bool,
 };
 
@@ -73,7 +71,6 @@ TaskEditForm.defaultProps = {
   onDelete: null,
   onToggleCompleted: null,
   cancelEditState: null,
-  cancelEditStateBlur: null,
   isCompleted: false,
 };
 
