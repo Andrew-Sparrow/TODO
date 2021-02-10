@@ -49,9 +49,9 @@ TaskEditField.propTypes = {
 
 TaskEditField.defaultProps = {
   onChange: null,
-  cancelEditState: null,
+  // cancelEditState: null,
   value: '',
-  taskEditError: null,
+  // taskEditError: null,
 };
 
 export default TaskEditField;

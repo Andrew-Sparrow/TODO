@@ -38,8 +38,9 @@ const TaskItem = ({
     <ListItem
       component="li"
       style={containerStyle}
+      onBlur={cancelEditState}
     >
-      <Box style={boxStyle} onBlure={cancelEditState}>
+      <Box style={boxStyle}>
         <Check
           id={id}
           completed={isCompleted}
@@ -52,7 +53,7 @@ const TaskItem = ({
               editTaskText={editTaskText}
               value={text}
               inputProps={{ 'aria-label': 'edit task' }}
-              // cancelEditState={cancelEditState}
+              cancelEditState={cancelEditState}
             />
           )
           : (

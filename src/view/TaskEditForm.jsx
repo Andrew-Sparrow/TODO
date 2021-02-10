@@ -38,7 +38,7 @@ const TaskEditForm = ({
   const editItem = (
     <form
       onSubmit={onSubmit}
-      onBlur={cancelEditState}
+      // onBlur={cancelEditState}
     >
       <TaskEditField
         style={{ padding: '18px 35px', textDecoration: isCompleted && 'line-through' }}
