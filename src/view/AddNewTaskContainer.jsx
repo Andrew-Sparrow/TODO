@@ -8,7 +8,6 @@ import AddNewTaskField from './AddNewTaskField';
 const style = {
   display: 'flex',
   justifyContent: 'space-between',
-  border: '1px solid',
   borderRadius: 3,
   backgroundColor: '#ffffff',
 };

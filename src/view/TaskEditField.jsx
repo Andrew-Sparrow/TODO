@@ -18,8 +18,8 @@ const useStyles = makeStyles({
   },
 });
 
-// const TaskEditField = ({ value, onChange }) => {
-const TaskEditField = ({ value, onChange, cancelEditState }) => {
+const TaskEditField = ({ value, onChange }) => {
+// const TaskEditField = ({ value, onChange, cancelEditState }) => {
 // const TaskEditField = ({ value, onChange, taskEditError }) => {
   const classes = useStyles();
 
@@ -32,7 +32,8 @@ const TaskEditField = ({ value, onChange, cancelEditState }) => {
       size="small"
       onChange={onChange}
       value={value}
-      onBlur={cancelEditState}
+      // onBlur={cancelEditState}
+      // onBlur={(e) => console.log(e)}
       // error={taskEditError}
       // helperText="Text Field Should Not Be Empty"
     />
@@ -41,7 +42,7 @@ const TaskEditField = ({ value, onChange, cancelEditState }) => {
 
 TaskEditField.propTypes = {
   onChange: PropTypes.func,
-  cancelEditState: PropTypes.func,
+  // cancelEditState: PropTypes.func,
   value: PropTypes.string,
   // taskEditError: PropTypes.bool,
 };
@@ -50,7 +51,7 @@ TaskEditField.defaultProps = {
   onChange: null,
   cancelEditState: null,
   value: '',
-  // taskEditError: null,
+  taskEditError: null,
 };
 
 export default TaskEditField;
