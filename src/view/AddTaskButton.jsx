@@ -2,8 +2,9 @@ import React from 'react';
 import Button from '@material-ui/core/Button';
 import PropTypes from 'prop-types';
 
-import { withStyles, makeStyles } from '@material-ui/core/styles';
 import { green } from '@material-ui/core/colors';
+
+import { makeStyles, withStyles } from '@material-ui/core/styles';
 
 const ColorButton = withStyles(() => ({
   root: {
@@ -24,17 +25,17 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const AddTaskButton = ({ onSubmit, disabled }) => {
+const AddTaskButton = ({ disabled }) => {
   const classes = useStyles();
 
   return (
     <ColorButton
       type="submit"
       variant="outlined"
-      onClick={onSubmit}
       className={classes.margin}
       color="primary"
       disabled={disabled}
+      value="add"
     >
       Add
     </ColorButton>
@@ -42,12 +43,10 @@ const AddTaskButton = ({ onSubmit, disabled }) => {
 };
 
 AddTaskButton.propTypes = {
-  onSubmit: PropTypes.func,
   disabled: PropTypes.bool,
 };
 
 AddTaskButton.defaultProps = {
-  onSubmit: null,
   disabled: null,
 };
 

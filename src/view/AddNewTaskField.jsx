@@ -29,7 +29,6 @@ const AddNewTaskField = ({ value, onChange, cancelAddNewTaskChanges }) => {
       size="medium"
       autoFocus
       onChange={onChange}
-      onBlur={cancelAddNewTaskChanges}
       InputLabelProps={{
         shrink: true,
       }}

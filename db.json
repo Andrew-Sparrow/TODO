@@ -3,7 +3,7 @@
     {
       "id": "1",
       "text": "Doctors Appointment",
-      "isCompleted": false
+      "isCompleted": true
     },
     {
       "isCompleted": false,
@@ -14,11 +14,6 @@
       "isCompleted": false,
       "text": "Watch Movie",
       "id": "gUTYfKB"
-    },
-    {
-      "isCompleted": false,
-      "text": "1",
-      "id": "SFWMk61"
     }
   ]
 }

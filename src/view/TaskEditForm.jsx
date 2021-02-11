@@ -15,7 +15,8 @@ const TaskEditForm = ({
 
   const onSubmit = (evt) => {
     evt.preventDefault();
-    if (newText) {
+
+    if (newText.trim()) {
       editTaskText(id, newText);
       cancelEditState(evt);
     }

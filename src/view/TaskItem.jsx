@@ -24,6 +24,12 @@ const TaskItem = ({
     display: 'flex',
   };
 
+  const taskTextStyle = {
+    wordBreak: 'break-all',
+    padding: '20px 35px',
+    textDecoration: isCompleted && 'line-through',
+  };
+
   const onEditTask = (evt) => {
     evt.preventDefault();
     setStateEdit({ isEdit: true });
@@ -58,7 +64,7 @@ const TaskItem = ({
           : (
             <Box
               onClick={onEditTask}
-              style={{ padding: '20px 35px', textDecoration: isCompleted && 'line-through' }}
+              style={taskTextStyle}
             >
               {text}
             </Box>

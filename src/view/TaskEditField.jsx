@@ -6,15 +6,18 @@ import PropTypes from 'prop-types';
 
 const useStyles = makeStyles({
   root: {
+    width: '300px',
+    display: 'block',
     borderRadius: 3,
     marginBottom: '-10px',
     marginLeft: '15px',
     marginTop: '10px',
     backgroundColor: '#ffffff',
-    width: '300px',
     paddingLeft: '20px',
     paddingRight: '20px',
     paddingTop: '10px',
+    whiteSpace: 'pre-wrap',
+    overflowWrap: 'anywhere',
   },
 });
 

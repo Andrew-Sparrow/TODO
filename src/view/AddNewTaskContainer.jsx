@@ -1,5 +1,5 @@
 import React from 'react';
-import Box from '@material-ui/core/Box';
+import { makeStyles } from '@material-ui/core/styles';
 
 import PropTypes from 'prop-types';
 import AddTaskButton from './AddTaskButton';
@@ -46,7 +46,7 @@ const style = {
 //   }
 // }
 
-const AddNewTaskContainer = (props) => {
+const AddNewTaskContainer = ({ onAdd }) => {
   const [text, setText] = React.useState('');
 
   const handleChange = (evt) => {
@@ -56,28 +56,42 @@ const AddNewTaskContainer = (props) => {
   const onSubmit = (evt) => {
     evt.preventDefault();
 
-    const { onAdd } = props;
-
-    onAdd({ text });
-    setText('');
+    if (text.trim()) {
+      onAdd({ text });
+      setText('');
+    }
   };
+
+  const useStyles = makeStyles((theme) => ({
+    margin: {
+      margin: theme.spacing(0),
+    },
+  }));
 
   const cancelAddNewTaskChanges = () => {
     setText('');
   };
 
+  const classes = useStyles();
+
   return (
-    <form>
-      <Box style={style}>
-        <AddNewTaskField
-          type="text"
-          name="textField"
-          value={text}
-          onChange={handleChange}
-          cancelAddNewTaskChanges={cancelAddNewTaskChanges}
-        />
-        <AddTaskButton disabled={!text} onSubmit={onSubmit} />
-      </Box>
+    <form onSubmit={onSubmit} style={style}>
+      <AddNewTaskField
+        type="text"
+        name="text"
+        label="Full Name"
+        value={text}
+        onChange={handleChange}
+        cancelAddNewTaskChanges={cancelAddNewTaskChanges}
+      />
+      <AddTaskButton
+        type="submit"
+        variant="outlined"
+        className={classes.margin}
+        disabled={!text}
+      >
+        Add
+      </AddTaskButton>
     </form>
   );
 };
