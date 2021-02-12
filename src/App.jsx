@@ -7,13 +7,13 @@ import {
   Container,
 } from '@material-ui/core';
 
-import AddNewTaskContainer from './view/AddNewTaskContainer';
+import AddNewTaskContainer from './components/AddNewTaskContainer';
 
-import Header from './view/Header';
-import Tasks from './view/Tasks';
-import NoTasks from './view/NoTasks';
-import Footer from './view/Footer';
-import About from './view/About';
+import Header from './components/Header';
+import Tasks from './components/Tasks';
+import NoTasks from './components/NoTasks';
+import Footer from './components/Footer';
+import About from './components/About';
 
 const App = () => {
   const [tasks, setTasks] = useState([]);
