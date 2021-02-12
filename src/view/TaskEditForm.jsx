@@ -1,17 +1,16 @@
-import React, { useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import TaskEditField from './TaskEditField';
 
 const TaskEditForm = ({
   id, isCompleted, value, editTaskText, cancelEditState,
 }) => {
-  const [newText, setText] = React.useState(value);
+  const [newText, setText] = useState(value);
+  const [errorState, setError] = useState(false);
 
   const handleChange = (evt) => {
     setText(evt.target.value);
   };
-
-  // let taskEditError = false;
 
   const onSubmit = (evt) => {
     evt.preventDefault();
@@ -19,6 +18,8 @@ const TaskEditForm = ({
     if (newText.trim()) {
       editTaskText(id, newText);
       cancelEditState(evt);
+    } else {
+      setError(true);
     }
   };
 
@@ -47,7 +48,7 @@ const TaskEditForm = ({
         onChange={handleChange}
         name="task"
         cancelEditState={cancelEditState}
-        // taskEditError={taskEditError}
+        errorState={errorState}
       >
         {newText}
       </TaskEditField>
