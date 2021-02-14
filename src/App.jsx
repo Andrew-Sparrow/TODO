@@ -27,14 +27,15 @@ const App = () => {
   };
 
   const fetchTasks = async () => {
-    const response = await fetch('http://localhost:5000/tasks');
+    const response = await fetch(`${process.env.REACT_APP_API_PATH}:${process.env.REACT_APP_API_PORT}/tasks`);
     const tasksFromServer = await response.json();
 
     return tasksFromServer;
   };
 
   const fetchTask = async (id) => {
-    const response = await fetch(`http://localhost:5000/tasks/${id}`);
+    // const response = await fetch(`http://localhost:5000/tasks/${id}`);
+    const response = await fetch(`${process.env.REACT_APP_API_PATH}:${process.env.REACT_APP_API_PORT}/tasks/${id}`);
     const task = await response.json();
 
     return task;
@@ -53,7 +54,7 @@ const App = () => {
     const isCompleted = false;
     const newTask = { isCompleted, ...task };
 
-    const response = await fetch('http://localhost:5000/tasks', {
+    const response = await fetch(`${process.env.REACT_APP_API_PATH}:${process.env.REACT_APP_API_PORT}/tasks`, {
       method: 'POST',
       headers: {
         'Content-type': 'application/json',
@@ -78,7 +79,7 @@ const App = () => {
     const taskToToggle = await fetchTask(id);
     const updatedTask = { ...taskToToggle, isCompleted: isChecked };
 
-    const response = await fetch(`http://localhost:5000/tasks/${id}`, {
+    const response = await fetch(`${process.env.REACT_APP_API_PATH}:${process.env.REACT_APP_API_PORT}/tasks/${id}`, {
       method: 'PUT',
       headers: {
         'Content-type': 'application/json',
@@ -99,7 +100,7 @@ const App = () => {
     const taskToToggle = await fetchTask(id);
     const updatedTask = { ...taskToToggle, text: taskText };
 
-    const response = await fetch(`http://localhost:5000/tasks/${id}`, {
+    const response = await fetch(`${process.env.REACT_APP_API_PATH}:${process.env.REACT_APP_API_PORT}/tasks/${id}`, {
       method: 'PUT',
       headers: {
         'Content-type': 'application/json',
