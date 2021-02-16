@@ -17,6 +17,10 @@ import NoTasks from './components/NoTasks';
 import Footer from './components/Footer';
 import About from './components/About';
 
+axios.defaults.baseURL = `${process.env.REACT_APP_API_PATH}:${process.env.REACT_APP_API_PORT}`;
+axios.defaults.headers['Content-Type'] = 'application/json';
+axios.defaults.responseType = 'json';
+
 const App = () => {
   const [tasks, setTasks] = useState([]);
 
@@ -52,24 +56,15 @@ const App = () => {
   const addTask = async (task) => {
     const isCompleted = false;
     const newTask = { isCompleted, ...task };
-    const baseTasksURL = `${process.env.REACT_APP_API_PATH}:${process.env.REACT_APP_API_PORT}`;
     const urlRequest = '/tasks';
 
-    const axiosInstance = axios.create({
-      baseURL: baseTasksURL,
-      headers: { 'content-type': 'application/json' },
-      responseType: 'json',
-    });
-
-    const response = await axiosInstance.post(urlRequest, JSON.stringify(newTask));
+    const response = await axios.post(urlRequest, JSON.stringify(newTask));
 
     setTasks([...tasks, response.data]);
   };
 
   const deleteTask = async (id) => {
-    await fetch(`${process.env.REACT_APP_API_PATH}:${process.env.REACT_APP_API_PORT}/tasks/${id}`, {
-      method: 'DELETE',
-    });
+    await axios.delete(`/tasks/${id}`);
 
     setTasks(tasks.filter((task) => id !== task.id));
   };
