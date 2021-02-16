@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 import './App.css';
@@ -27,18 +29,15 @@ const App = () => {
   };
 
   const fetchTasks = async () => {
-    const response = await fetch(`${process.env.REACT_APP_API_PATH}:${process.env.REACT_APP_API_PORT}/tasks`);
-    const tasksFromServer = await response.json();
+    const response = await axios.get(`${process.env.REACT_APP_API_PATH}:${process.env.REACT_APP_API_PORT}/tasks`);
 
-    return tasksFromServer;
+    return response.data;
   };
 
   const fetchTask = async (id) => {
-    // const response = await fetch(`http://localhost:5000/tasks/${id}`);
-    const response = await fetch(`${process.env.REACT_APP_API_PATH}:${process.env.REACT_APP_API_PORT}/tasks/${id}`);
-    const task = await response.json();
+    const response = await axios.get(`${process.env.REACT_APP_API_PATH}:${process.env.REACT_APP_API_PORT}/tasks/${id}`);
 
-    return task;
+    return response.data;
   };
 
   useEffect(() => {
@@ -53,22 +52,22 @@ const App = () => {
   const addTask = async (task) => {
     const isCompleted = false;
     const newTask = { isCompleted, ...task };
+    const baseTasksURL = `${process.env.REACT_APP_API_PATH}:${process.env.REACT_APP_API_PORT}`;
+    const urlRequest = '/tasks';
 
-    const response = await fetch(`${process.env.REACT_APP_API_PATH}:${process.env.REACT_APP_API_PORT}/tasks`, {
-      method: 'POST',
-      headers: {
-        'Content-type': 'application/json',
-      },
-      body: JSON.stringify(newTask),
+    const axiosInstance = axios.create({
+      baseURL: baseTasksURL,
+      headers: { 'content-type': 'application/json' },
+      responseType: 'json',
     });
 
-    const taskFromServer = await response.json();
+    const response = await axiosInstance.post(urlRequest, JSON.stringify(newTask));
 
-    setTasks([...tasks, taskFromServer]);
+    setTasks([...tasks, response.data]);
   };
 
   const deleteTask = async (id) => {
-    await fetch(`http://localhost:5000/tasks/${id}`, {
+    await fetch(`${process.env.REACT_APP_API_PATH}:${process.env.REACT_APP_API_PORT}/tasks/${id}`, {
       method: 'DELETE',
     });
 
