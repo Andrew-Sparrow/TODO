@@ -86,19 +86,11 @@ const App = () => {
     const taskToToggle = await fetchTask(id);
     const updatedTask = { ...taskToToggle, text: taskText };
 
-    const response = await fetch(`${process.env.REACT_APP_API_PATH}:${process.env.REACT_APP_API_PORT}/tasks/${id}`, {
-      method: 'PUT',
-      headers: {
-        'Content-type': 'application/json',
-      },
-      body: JSON.stringify(updatedTask),
-    });
-
-    const taskFromServer = await response.json();
+    const response = await axios.put(`/tasks/${id}`, JSON.stringify(updatedTask));
 
     setTasks(tasks.map(
       (task) => (task.id === id
-        ? { ...task, text: taskFromServer.text }
+        ? { ...task, text: response.data.text }
         : task),
     ));
   };
